@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MultiAgentProjectDetail } from '@/components/MultiAgentProjectDetail';
+import { RagProjectDetail } from '@/components/RagProjectDetail';
+import { AutonomousBlogProjectDetail } from '@/components/AutonomousBlogProjectDetail';
+import { CuneiformProjectDetail } from '@/components/CuneiformProjectDetail';
+import { EnterpriseRagProjectDetail } from '@/components/EnterpriseRagProjectDetail';
 
 interface AccordionItemData {
     id: number;
@@ -30,7 +34,8 @@ const accordionItems: AccordionItemData[] = [
         imageUrl: 'https://images.unsplash.com/photo-1677756119517-756a188d2d94?q=80&w=2070&auto=format&fit=crop',
         description: 'A Retrieval-Augmented Generation system with persistent long-term memory. Uses FAISS vector stores for document retrieval and integrates conversational memory to maintain context across sessions, enabling more personalized and accurate responses.',
         techStack: ['Python', 'LangChain', 'FAISS', 'HuggingFace', 'Azure OpenAI', 'Streamlit'],
-        githubUrl: '#',
+        githubUrl: 'https://github.com/Yogarajaadithya/RAG-with-Long-Term-Memory-System.git',
+        hasCustomDetail: true,
     },
     {
         id: 3,
@@ -39,6 +44,7 @@ const accordionItems: AccordionItemData[] = [
         description: 'An autonomous agent that generates high-quality blog posts end-to-end. It researches topics, outlines content, writes drafts, and self-reviews using a multi-agent LangGraph workflow with LangSmith observability for monitoring and debugging.',
         techStack: ['Python', 'LangGraph', 'LangSmith', 'FastAPI', 'GPT-4'],
         githubUrl: '#',
+        hasCustomDetail: true,
     },
     {
         id: 4,
@@ -47,6 +53,16 @@ const accordionItems: AccordionItemData[] = [
         description: 'A deep learning pipeline using Faster R-CNN for detecting and classifying ancient cuneiform signs in tablet images, enabling automated archaeological analysis and digitization of historical artifacts.',
         techStack: ['Python', 'PyTorch', 'Faster R-CNN', 'Torchvision', 'OpenCV', 'NumPy'],
         githubUrl: '#',
+        hasCustomDetail: true,
+    },
+    {
+        id: 5,
+        title: 'Beyond Retrieval: Optimizing Provenance and Faithfulness in Enterprise RAG',
+        imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2070&auto=format&fit=crop',
+        description: 'An enterprise-grade RAG pipeline optimized for source provenance and answer faithfulness — combining hybrid retrieval, cross-encoder re-ranking, NLI-based validation, and chunk-level citation mapping to deliver trustworthy, auditable AI answers at scale.',
+        techStack: ['Python', 'FAISS', 'BM25', 'Cross-Encoder', 'NLI Models', 'FastAPI', 'OpenAI'],
+        githubUrl: '#',
+        hasCustomDetail: true,
     },
 ];
 
@@ -264,9 +280,27 @@ export function LandingAccordionItem() {
             <AnimatePresence>
                 {selectedProject && (
                     selectedProject.hasCustomDetail ? (
-                        <MultiAgentProjectDetail
-                            onClose={() => setSelectedProject(null)}
-                        />
+                        selectedProject.id === 1 ? (
+                            <MultiAgentProjectDetail
+                                onClose={() => setSelectedProject(null)}
+                            />
+                        ) : selectedProject.id === 2 ? (
+                            <RagProjectDetail
+                                onClose={() => setSelectedProject(null)}
+                            />
+                        ) : selectedProject.id === 3 ? (
+                            <AutonomousBlogProjectDetail
+                                onClose={() => setSelectedProject(null)}
+                            />
+                        ) : selectedProject.id === 4 ? (
+                            <CuneiformProjectDetail
+                                onClose={() => setSelectedProject(null)}
+                            />
+                        ) : selectedProject.id === 5 ? (
+                            <EnterpriseRagProjectDetail
+                                onClose={() => setSelectedProject(null)}
+                            />
+                        ) : null
                     ) : (
                         <ProjectDetail
                             project={selectedProject}

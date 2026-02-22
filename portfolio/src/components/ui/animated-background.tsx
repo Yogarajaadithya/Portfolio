@@ -69,7 +69,7 @@ export default function AnimatedBackground({
                 'aria-selected': activeId === id,
                 'data-checked': activeId === id ? 'true' : 'false',
                 ...interactionProps,
-            } as React.HTMLAttributes<HTMLElement>,
+            } as any,
             <>
                 <AnimatePresence initial={false}>
                     {activeId === id && (
