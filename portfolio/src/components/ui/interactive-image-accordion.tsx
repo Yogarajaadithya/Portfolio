@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MultiAgentProjectDetail } from '@/components/MultiAgentProjectDetail';
 import { RagProjectDetail } from '@/components/RagProjectDetail';
-import { AutonomousBlogProjectDetail } from '@/components/AutonomousBlogProjectDetail';
+import AutonomousBlogProjectDetail from "@/components/AutonomousBlogProjectDetail";
 import { CuneiformProjectDetail } from '@/components/CuneiformProjectDetail';
 import { EnterpriseRagProjectDetail } from '@/components/EnterpriseRagProjectDetail';
 
@@ -49,7 +49,7 @@ const accordionItems: AccordionItemData[] = [
     {
         id: 4,
         title: 'Cuneiform Sign Detection & Classification',
-        imageUrl: 'https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?q=80&w=2070&auto=format&fit=crop',
+        imageUrl: '/cuniform.jpg',
         description: 'A deep learning pipeline using Faster R-CNN for detecting and classifying ancient cuneiform signs in tablet images, enabling automated archaeological analysis and digitization of historical artifacts.',
         techStack: ['Python', 'PyTorch', 'Faster R-CNN', 'Torchvision', 'OpenCV', 'NumPy'],
         githubUrl: '#',
@@ -58,7 +58,7 @@ const accordionItems: AccordionItemData[] = [
     {
         id: 5,
         title: 'Beyond Retrieval: Optimizing Provenance and Faithfulness in Enterprise RAG',
-        imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2070&auto=format&fit=crop',
+        imageUrl: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2070&auto=format&fit=crop',
         description: 'An enterprise-grade RAG pipeline optimized for source provenance and answer faithfulness — combining hybrid retrieval, cross-encoder re-ranking, NLI-based validation, and chunk-level citation mapping to deliver trustworthy, auditable AI answers at scale.',
         techStack: ['Python', 'FAISS', 'BM25', 'Cross-Encoder', 'NLI Models', 'FastAPI', 'OpenAI'],
         githubUrl: '#',
@@ -261,7 +261,35 @@ export function LandingAccordionItem() {
 
                     {/* Right Side: Image Accordion */}
                     <div className="w-full md:w-2/3">
-                        <div className="flex flex-row items-center justify-center gap-4 overflow-x-auto p-4">
+                        {/* Mobile: vertical card list */}
+                        <div className="flex flex-col gap-3 md:hidden">
+                            {accordionItems.map((item) => (
+                                <div
+                                    key={item.id}
+                                    className="relative h-36 rounded-xl overflow-hidden cursor-pointer"
+                                    onClick={() => setSelectedProject(item)}
+                                >
+                                    <img
+                                        src={item.imageUrl}
+                                        alt={item.title}
+                                        className="absolute inset-0 w-full h-full object-cover"
+                                        onError={(e) => {
+                                            const t = e.target as HTMLImageElement;
+                                            t.onerror = null;
+                                            t.src = 'https://placehold.co/400x144/2d3748/ffffff?text=Image+Error';
+                                        }}
+                                    />
+                                    <div className="absolute inset-0 bg-black/50" />
+                                    <div className="absolute bottom-3 left-4 right-4">
+                                        <p className="text-white font-semibold text-sm leading-snug">{item.title}</p>
+                                        <span className="text-white/70 text-xs">Tap to view →</span>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Desktop: horizontal accordion */}
+                        <div className="hidden md:flex flex-row items-center justify-center gap-4 p-4">
                             {accordionItems.map((item, index) => (
                                 <AccordionItem
                                     key={item.id}

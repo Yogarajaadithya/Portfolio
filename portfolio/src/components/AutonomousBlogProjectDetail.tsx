@@ -1,67 +1,70 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { X, Brain, Cpu, Database, BarChart3, ShieldCheck, Zap, Layers, Lightbulb, TrendingUp, Terminal, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { X, Brain, Cpu, BarChart3, ShieldCheck, Zap, Layers, MessageSquare, Lightbulb, TrendingUp, Terminal, AlertCircle, CheckCircle2 } from 'lucide-react';
 
 import { GetStartedButton } from '@/components/ui/get-started-button';
 
+// --- Main Component ---
 interface AutonomousBlogProjectDetailProps {
     onClose: () => void;
 }
 
+// --- Section Data ---
 const metrics = [
-    { value: '5', label: 'Specialized Agents', icon: <Cpu className="w-5 h-5" /> },
+    { value: '3', label: 'Specialized Agents', icon: <Cpu className="w-5 h-5" /> },
     { value: '100%', label: 'Autonomous End-to-End', icon: <Zap className="w-5 h-5" /> },
-    { value: 'GPT-4', label: 'Generation Model', icon: <Brain className="w-5 h-5" /> },
-    { value: 'Live', label: 'LangSmith Tracing', icon: <BarChart3 className="w-5 h-5" /> },
+    { value: 'GPT-4.1', label: 'Generation Model', icon: <Brain className="w-5 h-5" /> },
+    { value: 'Live', label: 'LangSmith Tracing', icon: <Terminal className="w-5 h-5" /> },
 ];
 
+
 const features = [
-    { title: 'Research Agent', icon: <Database className="w-5 h-5" />, desc: 'Autonomously gathers information from multiple sources, validates facts, extracts key insights, and compiles a structured research report to ground every blog post in accurate data.' },
-    { title: 'Outline Agent', icon: <Layers className="w-5 h-5" />, desc: 'Generates a logically structured blog outline with section headings, subpoints, and SEO keyword placement — adapting depth and format to the target audience and topic complexity.' },
-    { title: 'Writing Agent', icon: <Brain className="w-5 h-5" />, desc: 'Produces section-by-section prose with consistent tone, voice, and style. Integrates citations from research, maintains narrative flow, and targets the specified word count and reading level.' },
-    { title: 'Review & Refinement Agent', icon: <ShieldCheck className="w-5 h-5" />, desc: 'Self-reviews the draft for factual accuracy, logical coherence, grammar, and quality. Produces an annotated critique and revised draft, reducing manual editing by over 80%.' },
-    { title: 'Publish Agent', icon: <TrendingUp className="w-5 h-5" />, desc: 'Handles final formatting, metadata generation (title, description, tags, slug), and outputs publish-ready markdown or HTML. Can integrate with CMS APIs for automated publishing.' },
-    { title: 'LangGraph Orchestration', icon: <Cpu className="w-5 h-5" />, desc: 'State-machine workflow built on LangGraph with conditional branching, retry logic, and human-in-the-loop checkpoints. Each agent passes structured state to the next in the pipeline.' },
-    { title: 'LangSmith Observability', icon: <Terminal className="w-5 h-5" />, desc: 'Full trace visibility for every agent call, LLM invocation, and tool use. Latency tracking, token usage per step, error replay, and evaluation datasets built from production runs.' },
-    { title: 'Configurable Style Profiles', icon: <Lightbulb className="w-5 h-5" />, desc: 'Per-topic style profiles define tone (technical, casual, persuasive), target audience, word count, structure preferences, and citation format — all passed as prompt-time configuration.' },
-    { title: 'Human-in-the-Loop Gates', icon: <Zap className="w-5 h-5" />, desc: 'Optional approval checkpoints after Research and Review stages. Human can inject edits, redirect research, or approve before the pipeline continues — without breaking the agentic flow.' },
-    { title: 'FastAPI Backend', icon: <Database className="w-5 h-5" />, desc: 'RESTful API with async endpoints for blog generation jobs, status polling, and result retrieval. Supports background task execution so long-running pipelines don\'t block request threads.' },
+    { title: 'Title Agent', icon: <Lightbulb className="w-5 h-5" />, desc: 'Brainstorms five creative, SEO-optimized title candidates using high-temperature sampling (0.8), then autonomously selects the most effective title based on engagement potential, keyword placement, and clarity.' },
+    { title: 'Content Agent', icon: <MessageSquare className="w-5 h-5" />, desc: 'Generates complete 800-1200 word blog posts in clean Markdown format. Maintains consistent tone across four style profiles (professional, casual, technical, humorous) with balanced creativity (temperature 0.7) for engaging, coherent narratives.' },
+    { title: 'Translation Agent', icon: <Layers className="w-5 h-5" />, desc: 'Preserves Markdown formatting while translating content to Spanish, French, German, Chinese, and more. Uses low-temperature sampling (0.3) for accurate, consistent translations without hallucination or structural degradation.' },
+    { title: 'LangGraph Orchestration', icon: <Cpu className="w-5 h-5" />, desc: 'Directed Acyclic Graph (DAG) workflow with conditional routing. Title Agent → Content Agent → Router decision → Translation Agent (optional) or END. State-based collaboration with BlogState managing shared memory.' },
+    { title: 'LangSmith Observability', icon: <Terminal className="w-5 h-5" />, desc: 'Full trace visibility for every agent execution, LLM invocation, and state transition. Real-time debugging, token usage tracking, cost breakdown per agent, and workflow visualization with error context replay.' },
+    { title: 'Configurable Style Profiles', icon: <TrendingUp className="w-5 h-5" />, desc: 'Four writing styles (professional, casual, technical, humorous) define tone, vocabulary complexity, sentence structure, and formatting preferences — all configured per-request without model retraining.' },
+    { title: 'Multi-Language Support', icon: <BarChart3 className="w-5 h-5" />, desc: 'Conditional translation pipeline supporting 5+ languages. Router logic determines whether to invoke Translation Agent based on target_language parameter, enabling monolingual or multilingual output from a single request.' },
+    { title: 'FastAPI Backend', icon: <Zap className="w-5 h-5" />, desc: 'RESTful API with async endpoints for blog generation jobs (/api/v1/generate), health monitoring (/api/v1/health), and automatic Swagger documentation. JSON response includes metadata: word count, generation time, brainstormed titles.' },
 ];
 
 const techStack = [
-    { category: 'Orchestration', items: ['LangGraph', 'LangChain', 'Python', 'AsyncIO'] },
-    { category: 'AI & LLM', items: ['OpenAI', 'GPT-4', 'LangSmith', 'Tiktoken'] },
-    { category: 'Backend', items: ['FastAPI', 'Pydantic', 'Uvicorn', 'Redis'] },
+    { category: 'Orchestration', items: ['LangGraph', 'UV Package Manager'] },
+    { category: 'Frontend', items: ['Streamlit', 'HTTPX'] },
+    { category: 'Backend', items: ['FastAPI', 'Uvicorn'] },
 ];
 
 const useCases = [
-    { question: 'Write a technical deep-dive on transformer attention mechanisms', type: 'Technical Blog', result: 'Research → Outline → 2000-word draft' },
-    { question: 'Generate a beginner guide to setting up a Python dev environment', type: 'Tutorial Post', result: 'Step-by-step with code snippets' },
-    { question: 'Create a thought-leadership piece on the future of AI in healthcare', type: 'Opinion Piece', result: 'Research-grounded persuasive essay' },
-    { question: 'Write a product comparison: LangChain vs LlamaIndex', type: 'Comparison Post', result: 'Structured pros/cons with citations' },
-    { question: 'Draft a weekly AI news roundup from recent research papers', type: 'Newsletter', result: 'Summarized highlights with links' },
-    { question: 'Create an SEO-optimized post on "best vector databases 2025"', type: 'SEO Content', result: 'Keyword-mapped outline + draft' },
-    { question: 'Produce a case study on using LLMs for customer support automation', type: 'Case Study', result: 'Problem → Solution → Outcome format' },
-    { question: 'Generate a series of 3 posts on RAG architecture from scratch', type: 'Content Series', result: 'Linked multi-post with shared context' },
+    { question: 'Write a technical deep-dive on LangGraph workflows for beginners', type: 'Technical Blog Post', result: 'Title brainstorming → 1000-word technical draft with code examples' },
+    { question: 'Convert a YouTube video transcript into a polished blog post', type: 'Content Repurposing', result: 'Transcript input → Title generation → Structured markdown article' },
+    { question: 'Generate a professional blog about remote work in Spanish and German', type: 'Multi-Language Content', result: 'Single topic → English draft → Dual translations with preserved formatting' },
+    { question: 'Create SEO content on "Best AI Tools for Content Creation 2026"', type: 'SEO-Optimized Article', result: '5 title candidates → Keyword-rich content → 800-1200 words' },
+    { question: 'Write a humorous take on "Why Developers Love Dark Mode"', type: 'Casual Blog Post', result: 'Casual style profile → Engaging narrative → Light, conversational tone' },
+    { question: 'Create an executive-level piece on AI adoption in enterprise', type: 'Professional Thought Leadership', result: 'Professional style → Authoritative tone → Business-focused vocabulary' },
+    { question: 'Generate a beginner\'s guide to setting up FastAPI with LangGraph', type: 'Tutorial Content', result: 'Technical style → Step-by-step structure → Code-friendly formatting' },
+    { question: 'Produce a product announcement blog in 5 languages simultaneously', type: 'Global Product Launch', result: 'Single generation → Multi-language translation → Consistent messaging across regions' },
 ];
 
 const challenges = [
-    { challenge: 'Research Accuracy & Hallucination', problem: 'Agents can fabricate plausible-sounding facts when sources are unavailable or ambiguous', solution: 'Research Agent uses structured source validation with citation tracking. Review Agent cross-checks claims against the original research report before approving the draft.' },
-    { challenge: 'Maintaining Coherent Voice Across Agents', problem: 'Each agent call is stateless — tone, style, and narrative voice can drift between sections written by different prompts', solution: 'Global style profile injected into every agent prompt as a system instruction. Outline Agent defines a tone contract; Writing Agent follows it section-by-section with reference to prior output.' },
-    { challenge: 'Long-Context State Management', problem: 'Passing research reports, outlines, and drafts through a multi-step pipeline quickly exhausts LLM context windows', solution: 'LangGraph state object carries compressed summaries at each stage. Full content stored in Redis; agents retrieve only the specific context slice they need per step.' },
-    { challenge: 'Review Agent Consistency', problem: 'Self-review by the same LLM that wrote the content tends to be lenient and misses real issues', solution: 'Review Agent uses a separate, higher-temperature prompt with an explicit adversarial instruction set. Evaluates against a fixed rubric (accuracy, clarity, structure, tone) and produces scored feedback.' },
+    { challenge: 'Title Selection from Multiple Candidates', problem: 'Generating 5 creative titles is easy, but autonomously selecting the best one without human judgment introduces bias and inconsistency across topic types', solution: 'Title Agent uses high-temperature sampling (0.8) for diverse brainstorming, then applies a structured evaluation rubric (SEO potential, clarity, engagement, keyword placement) with explicit selection criteria in the prompt to choose the optimal title deterministically.' },
+    { challenge: 'Translation Accuracy with Markdown Preservation', problem: 'LLMs often break Markdown syntax during translation (e.g., ## Headers become ## Cabeceras: or lose formatting), making translated output unpublishable without manual fixes', solution: 'Translation Agent uses low-temperature sampling (0.3) for accuracy and receives explicit instructions to preserve all Markdown tokens verbatim. Prompt includes examples of correct Markdown preservation across language boundaries.' },
+    { challenge: 'Conditional Routing Without Breaking State Flow', problem: 'Translation is optional—router must decide whether to invoke Translation Agent or skip directly to END, but incorrect routing breaks the DAG or causes state loss', solution: 'LangGraph add_conditional_edges() with should_translate() router function checks target_language field in BlogState. Returns "translate" or "end" string mapped to next node. Ensures state flows correctly regardless of path taken.' },
+    { challenge: 'Temperature Optimization Per Agent Task', problem: 'Single global temperature setting produces poor results—titles need creativity (hallucination risk), translations need precision (boring output risk), content needs balance', solution: 'Each agent instantiates its own LLM client with task-specific temperature: Title Agent (0.8 for diversity), Content Agent (0.7 for balanced creativity), Translation Agent (0.3 for accuracy). Configured per-agent in prompt setup.' },
 ];
 
 const highlights = [
-    { title: 'Agentic Architecture', icon: <Layers className="w-5 h-5" />, desc: 'LangGraph state machine with 5 specialized agents, conditional branching, and human-in-the-loop checkpoints' },
-    { title: 'AI Engineering', icon: <Brain className="w-5 h-5" />, desc: 'Production LLM pipeline: prompt engineering, state management, and multi-step orchestration at scale' },
-    { title: 'Observability', icon: <Terminal className="w-5 h-5" />, desc: 'Full LangSmith tracing: every token, latency, and agent decision visible and replayable for debugging' },
-    { title: 'Content Quality', icon: <ShieldCheck className="w-5 h-5" />, desc: 'Self-reviewing pipeline with adversarial critique agent reduces manual editing and hallucination risk' },
-    { title: 'Production Ready', icon: <Zap className="w-5 h-5" />, desc: 'Async FastAPI backend, background job execution, Redis state store, and configurable style profiles' },
-    { title: 'Business Value', icon: <TrendingUp className="w-5 h-5" />, desc: 'Turns a multi-hour content creation task into a fully automated, configurable pipeline that runs in minutes' },
+    { title: 'Agentic Architecture', icon: <Cpu className="w-5 h-5" />, desc: '3-agent LangGraph workflow with conditional routing' },
+    { title: 'AI Engineering', icon: <Brain className="w-5 h-5" />, desc: 'Production LLM pipeline with tuned temps & TypedDict state' },
+    { title: 'Observability', icon: <Terminal className="w-5 h-5" />, desc: 'LangSmith tracing for execution, tokens, latency, transitions' },
+    { title: 'Multi-Language AI', icon: <Layers className="w-5 h-5" />, desc: 'Markdown-safe translation across 5+ languages' },
+    { title: 'Production Ready', icon: <ShieldCheck className="w-5 h-5" />, desc: 'Async FastAPI + Pydantic + Streamlit + Azure deployment' },
+    { title: 'Business Value', icon: <Zap className="w-5 h-5" />, desc: 'Minutes-based automated blog generation with SEO boost' },
 ];
 
-export const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailProps> = ({ onClose }) => {
+
+
+const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailProps> = ({ onClose }) => {
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
             if (e.key === 'Escape') onClose();
@@ -93,7 +96,7 @@ export const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailPr
 
             {/* ====== HERO ====== */}
             <section className="pt-32 pb-16 bg-white">
-                <div className="container mx-auto max-w-7xl px-6">
+                <div className="container mx-auto max-w-7xl px-10 md:px-16">
                     <motion.h1
                         className="text-6xl md:text-7xl lg:text-[6rem] font-extrabold text-gray-900 leading-[1.02] tracking-[-0.03em]"
                         style={{ fontFamily: 'Space Grotesk, sans-serif' }}
@@ -113,15 +116,15 @@ export const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailPr
                     >
                         <div className="space-y-6 max-w-4xl">
                             <h2 className="text-2xl md:text-3xl font-medium text-gray-900 leading-tight">
-                                A 5-agent LangGraph pipeline that researches, writes, reviews, and publishes blog content autonomously
+                                A production-ready 3-agent DAG workflow that autonomously generates, writes, and translates blog posts from topic to publication
                             </h2>
                             <p className="text-xl md:text-2xl text-gray-500 leading-relaxed max-w-3xl">
-                                combining LLM orchestration with structured state management and LangSmith observability to produce high-quality, fact-grounded blog posts in <span className="font-bold text-gray-900">minutes</span>.
+                                combining conditional routing with temperature-optimized LLMs to deliver SEO-friendly content across <span className="font-bold text-gray-900">5+ languages</span> in under 60 seconds.
                             </p>
                         </div>
 
                         <div className="pt-6 flex flex-col sm:flex-row gap-4">
-                            <a href="#" target="_blank" rel="noopener noreferrer" className="inline-block">
+                            <a href="https://github.com/Yogarajaadithya/The-Multi-Agent-Assistant-for-Smarter-Analytics.git" target="_blank" rel="noopener noreferrer" className="inline-block">
                                 <GetStartedButton
                                     text="View Repository"
                                     className="bg-gray-900 text-white hover:bg-black h-14 px-10 text-lg rounded-full shadow-sm hover:shadow-md transition-all duration-200"
@@ -137,20 +140,23 @@ export const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailPr
                     </motion.div>
                 </div>
 
+                {/* Explicit Spacer to Force Layout Separation */}
                 <div className="h-16 md:h-24 w-full" aria-hidden="true" />
-                <div className="container mx-auto max-w-7xl px-6 mb-20">
+
+                {/* Structured breathing space */}
+                <div className="container mx-auto max-w-7xl px-10 md:px-16 mb-20">
                     <div className="h-px bg-gray-100" />
                 </div>
             </section>
 
             {/* ====== IMPACT METRICS ====== */}
-            <section className="py-24 bg-gray-200">
-                <div className="container mx-auto max-w-7xl px-6">
+            <section className="bg-gray-200" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+                <div className="container mx-auto max-w-7xl px-10 md:px-16">
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {metrics.map((m, i) => (
                             <motion.div
                                 key={m.label}
-                                className="p-10 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+                                className="p-10 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group flex flex-col items-center justify-center text-center"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-50px" }}
@@ -163,14 +169,14 @@ export const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailPr
                         ))}
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* Explicit spacing between sections */}
-            <div className="w-full bg-white h-12 md:h-24"></div>
+            < div className="w-full bg-white h-12 md:h-24" ></div >
 
-            {/* ====== ARCHITECTURE ====== */}
-            <section className="py-16 bg-white">
-                <div className="container mx-auto max-w-7xl px-6">
+            {/* ====== ARCHITECTURE — Visual Centerpiece ====== */}
+            < section className="py-16 bg-white" >
+                <div className="container mx-auto max-w-7xl px-10 md:px-16">
                     <motion.div
                         className="mb-16"
                         initial={{ opacity: 0, y: 20 }}
@@ -183,7 +189,9 @@ export const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailPr
                         </h2>
                     </motion.div>
 
+                    {/* Pipeline Diagram — THE BRAIN */}
                     <div className="relative">
+
                         <motion.div
                             className="w-full bg-white rounded-3xl p-8 md:p-12 shadow-lg border border-gray-100 overflow-hidden relative"
                             initial={{ opacity: 0, y: 30, scale: 0.98 }}
@@ -198,97 +206,72 @@ export const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailPr
                             </div>
                             <div className="flex justify-center overflow-hidden pt-8 md:pt-4">
                                 <pre className="font-mono text-xs md:text-sm leading-none text-gray-800 whitespace-pre">
-                                    {`┌─────────────────────────────────────────────────────────────────────────┐
-│                         USER TOPIC INPUT                                │
-│                  "Write a post on RAG architecture"                     │
-│                  + Style Profile: { tone, audience, length }            │
-└──────────────────────────────┬──────────────────────────────────────────┘
-                               │
-                               ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    LANGGRAPH STATE MACHINE                               │
-│                                                                         │
-│  ┌─────────────────────────────────────────────────────────────────┐   │
-│  │  STATE OBJECT                                                   │   │
-│  │  { topic, style_profile, research, outline, draft, review }    │   │
-│  └─────────────────────────────────────────────────────────────────┘   │
-│                               │                                         │
-│                               ▼                                         │
-│  ┌──────────────────────────────────────────────────────────────────┐  │
-│  │  [1] RESEARCH AGENT                                              │  │
-│  │  • Multi-source information gathering                            │  │
-│  │  • Fact extraction & source validation                           │  │
-│  │  • Key insight compilation                                       │  │
-│  │  Output → research_report (stored in state)                      │  │
-│  └────────────────────────────┬─────────────────────────────────────┘  │
-│                               │                                         │
-│            ┌──────────────────┤ Human Checkpoint (optional)             │
-│            │ APPROVED         │                                         │
-│            ▼                  ▼                                         │
-│  ┌──────────────────────────────────────────────────────────────────┐  │
-│  │  [2] OUTLINE AGENT                                               │  │
-│  │  • Section heading generation                                    │  │
-│  │  • SEO keyword mapping                                           │  │
-│  │  • Subpoint & flow planning                                      │  │
-│  │  Output → blog_outline (stored in state)                         │  │
-│  └────────────────────────────┬─────────────────────────────────────┘  │
-│                               │                                         │
-│                               ▼                                         │
-│  ┌──────────────────────────────────────────────────────────────────┐  │
-│  │  [3] WRITING AGENT                                               │  │
-│  │  • Section-by-section prose generation                           │  │
-│  │  • Tone & style enforcement (via style profile)                  │  │
-│  │  • Citation integration from research report                     │  │
-│  │  Output → draft_post (stored in state)                           │  │
-│  └────────────────────────────┬─────────────────────────────────────┘  │
-│                               │                                         │
-│                               ▼                                         │
-│  ┌──────────────────────────────────────────────────────────────────┐  │
-│  │  [4] REVIEW AGENT (Adversarial)                                  │  │
-│  │  • Quality rubric scoring (accuracy, clarity, structure, tone)   │  │
-│  │  • Fact-check against research report                            │  │
-│  │  • Annotated critique + revised draft                            │  │
-│  │  Output → reviewed_draft (stored in state)                       │  │
-│  └────────────────────────────┬─────────────────────────────────────┘  │
-│                               │                                         │
-│            ┌──────────────────┤ Human Checkpoint (optional)             │
-│            │ APPROVED         │                                         │
-│            ▼                  ▼                                         │
-│  ┌──────────────────────────────────────────────────────────────────┐  │
-│  │  [5] PUBLISH AGENT                                               │  │
-│  │  • Final formatting (Markdown / HTML)                            │  │
-│  │  • Metadata: title, description, slug, tags                      │  │
-│  │  • CMS API integration (optional)                                │  │
-│  │  Output → published_post                                         │  │
-│  └────────────────────────────┬─────────────────────────────────────┘  │
-└───────────────────────────────┼─────────────────────────────────────────┘
-                                │
-                ┌───────────────┴──────────────┐
-                │                              │
-                ▼                              ▼
-    ┌─────────────────────┐       ┌───────────────────────┐
-    │   FASTAPI BACKEND   │       │  LANGSMITH TRACING    │
-    │  • Async job queue  │       │  • Full agent traces  │
-    │  • Redis state store│       │  • Token & latency    │
-    │  • REST endpoints   │       │  • Error replay       │
-    └─────────────────────┘       └───────────────────────┘`}
+                                    {`                           ┌─────────────────────────────────────────┐
+                           │         Streamlit Frontend              │
+                           │      http://localhost:8501              │
+                           └─────────────────┬───────────────────────┘
+                                             │
+                                             ▼
+                           ┌─────────────────────────────────────────┐
+                           │          FastAPI Backend                │
+                           │      http://localhost:8000              │
+                           └─────────────────┬───────────────────────┘
+                                             │
+                                             ▼
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                           LangGraph Workflow(DAG)                              │
+│                         with BlogState Management                              │
+│                                                                                │
+│   ┌──────────────┐      ┌──────────────┐      ┌─────────────────────┐          │
+│   │ Title Agent  │──────│Content Agent │──────│  Should Translate ? │          │
+│   │              │      │              │      │     (Router)        │          │
+│   │ • Generates  │      │ • 800 - 1200 │      └──────────┬──────────┘          │
+│   │   5 titles   │      │   words      │                 │                     │
+│   │ • Selects    │      │ • Markdown   │       ┌─────────┴─────────┐           │
+│   │   best       │      │ • SEO - opt  │       │                   │           │
+│   │ • Temp: 0.8  │      │ • Temp: 0.7  │       ▼                   ▼           │
+│   └──────────────┘      └──────────────┘  ┌──────────────┐      ┌─────────┐    │
+│                                           │ Translation  │      │   END   │    │
+│                                           │    Agent     │──────│         │    │
+│                                           │ • Preserves  │      └─────────┘    │
+│                                           │   Markdown   │                     │
+│                                           │ • Temp: 0.3  │                     │
+│                                           └──────────────┘                     │
+└────────────────────────────────────────────────────────────────────────────────┘
+                                             │
+                                             ▼
+                           ┌─────────────────────────────────────────┐
+                           │         OpenAI GPT - 4.1 API            │
+                           │   (Enterprise - grade deployment)       │
+                           └─────────────────────────────────────────┘
+                                             │
+                                             ▼
+                           ┌─────────────────────────────────────────┐
+                           │         LangSmith Monitoring            │
+                           │   (Tracing, Debugging, Analytics)       │
+                           └─────────────────────────────────────────┘`}
                                 </pre>
                             </div>
                         </motion.div>
+
+
+
                     </div>
                 </div>
-            </section>
+            </section >
+
+
 
             {/* Explicit spacing between sections */}
-            <div className="w-full bg-white h-12 md:h-24"></div>
+            < div className="w-full bg-white h-12 md:h-24" ></div >
 
             {/* ====== FEATURES ====== */}
-            <section className="py-16 bg-gray-200">
-                <div className="container mx-auto max-w-7xl px-6">
+            <section className="bg-gray-200" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
+                <div className="container mx-auto max-w-7xl px-10 md:px-16">
                     <h2 className="text-4xl font-semibold text-gray-900 mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
                         Key Features
                     </h2>
-                    <p className="text-xl text-gray-500 mb-20 max-w-2xl leading-relaxed">Enterprise-grade content generation across five specialized AI agents.</p>
+                    <p className="text-xl text-gray-500 max-w-2xl leading-relaxed" style={{ marginBottom: '2rem' }}>Enterprise-grade capabilities across six specialized AI agents.</p>
                     <div className="grid md:grid-cols-2 gap-8">
                         {features.map((f, i) => (
                             <motion.div
@@ -299,12 +282,12 @@ export const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailPr
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 0.35, delay: i * 0.04 }}
                             >
-                                <div className="flex items-start justify-between mb-6">
+                                <div className="flex items-start justify-between mb-6" style={{ paddingLeft: '0.75rem' }}>
                                     <div className="p-4 bg-gray-900 text-white rounded-xl shadow-md">
                                         {f.icon}
                                     </div>
                                 </div>
-                                <h3 className="font-bold text-gray-900 mb-4 text-xl">{f.title}</h3>
+                                <h3 className="font-bold text-gray-900 mb-4 text-xl" style={{ paddingLeft: '0.75rem' }}>{f.title}</h3>
                                 <div className="flex items-start gap-4 text-gray-400 text-base font-medium mt-auto">
                                     <div className="h-px w-8 bg-gray-200 group-hover:bg-gray-400 transition-colors mt-3 shrink-0" />
                                     <span className="group-hover:text-gray-600 transition-colors leading-relaxed">{f.desc}</span>
@@ -319,12 +302,12 @@ export const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailPr
             <div className="w-full bg-white h-12 md:h-24"></div>
 
             {/* ====== TECH STACK ====== */}
-            <section className="pt-32 pb-16 bg-white">
-                <div className="container mx-auto max-w-7xl px-6">
+            < section className="pt-32 pb-16 bg-white" >
+                <div className="container mx-auto max-w-7xl px-10 md:px-16">
                     <h2 className="text-4xl font-semibold text-gray-900 mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
                         Technology Stack
                     </h2>
-                    <p className="text-xl text-gray-500 mb-32 max-w-2xl">The modern, scalable tools driving the system.</p>
+                    <p className="text-xl text-gray-500 max-w-2xl" style={{ marginBottom: '2rem' }}>The modern, scalable tools driving the system.</p>
                     <div className="grid md:grid-cols-3 gap-10">
                         {techStack.map((group, i) => (
                             <motion.div
@@ -347,18 +330,18 @@ export const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailPr
                         ))}
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* Explicit spacing between sections */}
-            <div className="w-full bg-white h-12 md:h-24"></div>
+            < div className="w-full bg-white h-12 md:h-24" ></div >
 
             {/* ====== USE CASES ====== */}
-            <section className="py-16 bg-gray-200">
-                <div className="container mx-auto max-w-7xl px-6">
+            <section className="bg-gray-200" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
+                <div className="container mx-auto max-w-7xl px-10 md:px-16">
                     <h2 className="text-4xl font-semibold text-gray-900 mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
                         Use Cases
                     </h2>
-                    <p className="text-xl text-gray-500 mb-20 max-w-2xl">Content types handled end-to-end by the pipeline.</p>
+                    <p className="text-xl text-gray-500 max-w-2xl" style={{ marginBottom: '2rem' }}>Content types handled end-to-end by the pipeline.</p>
                     <div className="grid md:grid-cols-2 gap-8">
                         {useCases.map((uc, i) => (
                             <motion.div
@@ -369,10 +352,10 @@ export const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailPr
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 0.4, delay: i * 0.05 }}
                             >
-                                <div className="flex justify-between items-start mb-8">
+                                <div className="flex justify-between items-start mb-8" style={{ paddingLeft: '0.75rem' }}>
                                     <span className="px-4 py-1.5 bg-gray-100 text-gray-600 text-xs font-bold rounded-lg uppercase tracking-widest border border-gray-200 group-hover:bg-gray-900 group-hover:text-white transition-colors duration-300">{uc.type}</span>
                                 </div>
-                                <p className="text-2xl font-bold text-gray-900 mb-4 leading-snug">{uc.question}</p>
+                                <p className="text-2xl font-bold text-gray-900 mb-4 leading-snug" style={{ paddingLeft: '0.75rem' }}>{uc.question}</p>
                                 <div className="flex items-center gap-4 text-gray-400 text-base font-medium">
                                     <div className="h-px w-8 bg-gray-200 group-hover:bg-gray-400 transition-colors" />
                                     <span className="group-hover:text-gray-600 transition-colors">{uc.result}</span>
@@ -381,15 +364,15 @@ export const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailPr
                         ))}
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* Explicit spacing between sections */}
-            <div className="w-full bg-white h-12 md:h-24"></div>
+            < div className="w-full bg-white h-12 md:h-24" ></div >
 
             {/* ====== CHALLENGES ====== */}
-            <section className="py-16 bg-white">
-                <div className="container mx-auto max-w-7xl px-6">
-                    <h2 className="text-4xl font-semibold text-gray-900 mb-16" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            < section className="py-16 bg-white" >
+                <div className="container mx-auto max-w-7xl px-10 md:px-16">
+                    <h2 className="text-4xl font-semibold text-gray-900" style={{ fontFamily: 'Space Grotesk, sans-serif', marginBottom: '2rem' }}>
                         Challenges & Solutions
                     </h2>
                     <div className="grid md:grid-cols-2 gap-10">
@@ -402,10 +385,10 @@ export const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailPr
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 0.4, delay: i * 0.05 }}
                             >
-                                <div className="p-8 border-b border-gray-50 bg-gray-50/30">
+                                <div className="p-8 border-b border-gray-50 bg-gray-50/30" style={{ paddingLeft: '1.75rem' }}>
                                     <h3 className="font-bold text-gray-900 text-xl">{c.challenge}</h3>
                                 </div>
-                                <div className="p-8 flex-1 flex flex-col gap-8">
+                                <div className="p-8 flex-1 flex flex-col gap-8" style={{ paddingLeft: '1.75rem' }}>
                                     <div className="flex gap-5">
                                         <div className="mt-1 shrink-0 text-red-500 bg-red-50 p-2 rounded-full">
                                             <AlertCircle className="w-5 h-5" />
@@ -429,15 +412,15 @@ export const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailPr
                         ))}
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* Explicit spacing between sections */}
-            <div className="w-full bg-white h-12 md:h-24"></div>
+            < div className="w-full bg-white h-12 md:h-24" ></div >
 
             {/* ====== HIGHLIGHTS / DEMONSTRATES ====== */}
-            <section className="py-16 bg-gray-200">
-                <div className="container mx-auto max-w-7xl px-6">
-                    <h2 className="text-4xl font-semibold text-gray-900 mb-16" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <section className="bg-gray-200" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
+                <div className="container mx-auto max-w-7xl px-10 md:px-16">
+                    <h2 className="text-4xl font-semibold text-gray-900" style={{ fontFamily: 'Space Grotesk, sans-serif', marginBottom: '2rem' }}>
                         What This Demonstrates
                     </h2>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -450,12 +433,12 @@ export const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailPr
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 0.4, delay: i * 0.05 }}
                             >
-                                <div className="flex items-start justify-between mb-6">
+                                <div className="flex items-start justify-between mb-6" style={{ paddingLeft: '0.75rem' }}>
                                     <div className="p-4 bg-gray-900 text-white rounded-xl shadow-md">
                                         {h.icon}
                                     </div>
                                 </div>
-                                <h3 className="font-bold text-gray-900 mb-4 text-xl">{h.title}</h3>
+                                <h3 className="font-bold text-gray-900 mb-4 text-xl" style={{ paddingLeft: '0.75rem' }}>{h.title}</h3>
                                 <div className="flex items-start gap-4 text-gray-400 text-base font-medium mt-auto">
                                     <div className="h-px w-8 bg-gray-200 group-hover:bg-gray-400 transition-colors mt-3 shrink-0" />
                                     <span className="group-hover:text-gray-600 transition-colors leading-relaxed">{h.desc}</span>
@@ -470,13 +453,13 @@ export const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailPr
             <div className="w-full bg-white h-12 md:h-24"></div>
 
             {/* ====== FOOTER / ACTIONS ====== */}
-            <section className="py-24 bg-gray-900 text-white">
-                <div className="container mx-auto max-w-7xl px-6 text-center">
-                    <h2 className="text-3xl md:text-4xl font-semibold text-white mb-10" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <section className="bg-gray-900 text-white" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
+                <div className="container mx-auto max-w-7xl px-10 md:px-16 text-center">
+                    <h2 className="text-3xl md:text-4xl font-semibold text-white" style={{ fontFamily: 'Space Grotesk, sans-serif', marginBottom: '2rem' }}>
                         Explore the Project
                     </h2>
                     <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
-                        <a href="#" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Yogarajaadithya/The-Multi-Agent-Assistant-for-Smarter-Analytics.git" target="_blank" rel="noopener noreferrer">
                             <GetStartedButton
                                 text="View on GitHub"
                                 className="bg-white text-gray-900 hover:bg-gray-100 h-14 px-10 text-lg rounded-full shadow-sm hover:shadow-md transition-all duration-200"

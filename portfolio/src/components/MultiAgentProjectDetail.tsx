@@ -98,7 +98,7 @@ export const MultiAgentProjectDetail: React.FC<MultiAgentProjectDetailProps> = (
 
             {/* ====== HERO ====== */}
             <section className="pt-32 pb-16 bg-white">
-                <div className="container mx-auto max-w-7xl px-6">
+                <div className="container mx-auto max-w-7xl px-10 md:px-16">
                     <motion.h1
                         className="text-6xl md:text-7xl lg:text-[6rem] font-extrabold text-gray-900 leading-[1.02] tracking-[-0.03em]"
                         style={{ fontFamily: 'Space Grotesk, sans-serif' }}
@@ -146,19 +146,19 @@ export const MultiAgentProjectDetail: React.FC<MultiAgentProjectDetailProps> = (
                 <div className="h-16 md:h-24 w-full" aria-hidden="true" />
 
                 {/* Structured breathing space */}
-                <div className="container mx-auto max-w-7xl px-6 mb-20">
+                <div className="container mx-auto max-w-7xl px-10 md:px-16 mb-20">
                     <div className="h-px bg-gray-100" />
                 </div>
             </section>
 
             {/* ====== IMPACT METRICS ====== */}
-            <section className="py-24 bg-gray-200" >
-                <div className="container mx-auto max-w-7xl px-6">
+            <section className="bg-gray-200" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+                <div className="container mx-auto max-w-7xl px-10 md:px-16">
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                         {metrics.map((m, i) => (
                             <motion.div
                                 key={m.label}
-                                className="p-10 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+                                className="p-10 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group flex flex-col items-center justify-center text-center"
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: "-50px" }}
@@ -178,7 +178,7 @@ export const MultiAgentProjectDetail: React.FC<MultiAgentProjectDetailProps> = (
 
             {/* ====== ARCHITECTURE — Visual Centerpiece ====== */}
             < section className="py-16 bg-white" >
-                <div className="container mx-auto max-w-7xl px-6">
+                <div className="container mx-auto max-w-7xl px-10 md:px-16">
                     <motion.div
                         className="mb-16"
                         initial={{ opacity: 0, y: 20 }}
@@ -299,12 +299,12 @@ export const MultiAgentProjectDetail: React.FC<MultiAgentProjectDetailProps> = (
             < div className="w-full bg-white h-12 md:h-24" ></div >
 
             {/* ====== FEATURES ====== */}
-            < section className="py-16 bg-gray-200" >
-                <div className="container mx-auto max-w-7xl px-6">
+            <section className="bg-gray-200" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
+                <div className="container mx-auto max-w-7xl px-10 md:px-16">
                     <h2 className="text-4xl font-semibold text-gray-900 mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
                         Key Features
                     </h2>
-                    <p className="text-xl text-gray-500 mb-20 max-w-2xl leading-relaxed">Enterprise-grade capabilities across six specialized AI agents.</p>
+                    <p className="text-xl text-gray-500 max-w-2xl leading-relaxed" style={{ marginBottom: '2rem' }}>Enterprise-grade capabilities across six specialized AI agents.</p>
                     <div className="grid md:grid-cols-2 gap-8">
                         {features.map((f, i) => (
                             <motion.div
@@ -315,12 +315,12 @@ export const MultiAgentProjectDetail: React.FC<MultiAgentProjectDetailProps> = (
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 0.35, delay: i * 0.04 }}
                             >
-                                <div className="flex items-start justify-between mb-6">
+                                <div className="flex items-start justify-between mb-6" style={{ paddingLeft: '0.75rem' }}>
                                     <div className="p-4 bg-gray-900 text-white rounded-xl shadow-md">
                                         {f.icon}
                                     </div>
                                 </div>
-                                <h3 className="font-bold text-gray-900 mb-4 text-xl">{f.title}</h3>
+                                <h3 className="font-bold text-gray-900 mb-4 text-xl" style={{ paddingLeft: '0.75rem' }}>{f.title}</h3>
                                 <div className="flex items-start gap-4 text-gray-400 text-base font-medium mt-auto">
                                     <div className="h-px w-8 bg-gray-200 group-hover:bg-gray-400 transition-colors mt-3 shrink-0" />
                                     <span className="group-hover:text-gray-600 transition-colors leading-relaxed">{f.desc}</span>
@@ -329,18 +329,18 @@ export const MultiAgentProjectDetail: React.FC<MultiAgentProjectDetailProps> = (
                         ))}
                     </div>
                 </div>
-            </section >
+            </section>
 
             {/* Explicit spacing between sections */}
-            < div className="w-full bg-white h-12 md:h-24" ></div >
+            <div className="w-full bg-white h-12 md:h-24"></div>
 
             {/* ====== TECH STACK ====== */}
             < section className="pt-32 pb-16 bg-white" >
-                <div className="container mx-auto max-w-7xl px-6">
+                <div className="container mx-auto max-w-7xl px-10 md:px-16">
                     <h2 className="text-4xl font-semibold text-gray-900 mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
                         Technology Stack
                     </h2>
-                    <p className="text-xl text-gray-500 mb-32 max-w-2xl">The modern, scalable tools driving the system.</p>
+                    <p className="text-xl text-gray-500 max-w-2xl" style={{ marginBottom: '2rem' }}>The modern, scalable tools driving the system.</p>
                     <div className="grid md:grid-cols-3 gap-10">
                         {techStack.map((group, i) => (
                             <motion.div
@@ -369,12 +369,12 @@ export const MultiAgentProjectDetail: React.FC<MultiAgentProjectDetailProps> = (
             < div className="w-full bg-white h-12 md:h-24" ></div >
 
             {/* ====== USE CASES ====== */}
-            < section className="py-16 bg-gray-200" >
-                <div className="container mx-auto max-w-7xl px-6">
+            <section className="bg-gray-200" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
+                <div className="container mx-auto max-w-7xl px-10 md:px-16">
                     <h2 className="text-4xl font-semibold text-gray-900 mb-6" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
                         Use Cases
                     </h2>
-                    <p className="text-xl text-gray-500 mb-20 max-w-2xl">Interactive example questions handled by the system.</p>
+                    <p className="text-xl text-gray-500 max-w-2xl" style={{ marginBottom: '2rem' }}>Interactive example questions handled by the system.</p>
                     <div className="grid md:grid-cols-2 gap-8">
                         {useCases.map((uc, i) => (
                             <motion.div
@@ -385,10 +385,10 @@ export const MultiAgentProjectDetail: React.FC<MultiAgentProjectDetailProps> = (
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 0.4, delay: i * 0.05 }}
                             >
-                                <div className="flex justify-between items-start mb-8">
+                                <div className="flex justify-between items-start mb-8" style={{ paddingLeft: '0.75rem' }}>
                                     <span className="px-4 py-1.5 bg-gray-100 text-gray-600 text-xs font-bold rounded-lg uppercase tracking-widest border border-gray-200 group-hover:bg-gray-900 group-hover:text-white transition-colors duration-300">{uc.type}</span>
                                 </div>
-                                <p className="text-2xl font-bold text-gray-900 mb-4 leading-snug">{uc.question}</p>
+                                <p className="text-2xl font-bold text-gray-900 mb-4 leading-snug" style={{ paddingLeft: '0.75rem' }}>{uc.question}</p>
                                 <div className="flex items-center gap-4 text-gray-400 text-base font-medium">
                                     <div className="h-px w-8 bg-gray-200 group-hover:bg-gray-400 transition-colors" />
                                     <span className="group-hover:text-gray-600 transition-colors">{uc.result}</span>
@@ -404,8 +404,8 @@ export const MultiAgentProjectDetail: React.FC<MultiAgentProjectDetailProps> = (
 
             {/* ====== CHALLENGES ====== */}
             < section className="py-16 bg-white" >
-                <div className="container mx-auto max-w-7xl px-6">
-                    <h2 className="text-4xl font-semibold text-gray-900 mb-16" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+                <div className="container mx-auto max-w-7xl px-10 md:px-16">
+                    <h2 className="text-4xl font-semibold text-gray-900" style={{ fontFamily: 'Space Grotesk, sans-serif', marginBottom: '2rem' }}>
                         Challenges & Solutions
                     </h2>
                     <div className="grid md:grid-cols-2 gap-10">
@@ -418,10 +418,10 @@ export const MultiAgentProjectDetail: React.FC<MultiAgentProjectDetailProps> = (
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 0.4, delay: i * 0.05 }}
                             >
-                                <div className="p-8 border-b border-gray-50 bg-gray-50/30">
+                                <div className="p-8 border-b border-gray-50 bg-gray-50/30" style={{ paddingLeft: '1.75rem' }}>
                                     <h3 className="font-bold text-gray-900 text-xl">{c.challenge}</h3>
                                 </div>
-                                <div className="p-8 flex-1 flex flex-col gap-8">
+                                <div className="p-8 flex-1 flex flex-col gap-8" style={{ paddingLeft: '1.75rem' }}>
                                     <div className="flex gap-5">
                                         <div className="mt-1 shrink-0 text-red-500 bg-red-50 p-2 rounded-full">
                                             <AlertCircle className="w-5 h-5" />
@@ -451,9 +451,9 @@ export const MultiAgentProjectDetail: React.FC<MultiAgentProjectDetailProps> = (
             < div className="w-full bg-white h-12 md:h-24" ></div >
 
             {/* ====== HIGHLIGHTS / DEMONSTRATES ====== */}
-            < section className="py-16 bg-gray-200" >
-                <div className="container mx-auto max-w-7xl px-6">
-                    <h2 className="text-4xl font-semibold text-gray-900 mb-16" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <section className="bg-gray-200" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
+                <div className="container mx-auto max-w-7xl px-10 md:px-16">
+                    <h2 className="text-4xl font-semibold text-gray-900" style={{ fontFamily: 'Space Grotesk, sans-serif', marginBottom: '2rem' }}>
                         What This Demonstrates
                     </h2>
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -466,12 +466,12 @@ export const MultiAgentProjectDetail: React.FC<MultiAgentProjectDetailProps> = (
                                 viewport={{ once: true, margin: "-50px" }}
                                 transition={{ duration: 0.4, delay: i * 0.05 }}
                             >
-                                <div className="flex items-start justify-between mb-6">
+                                <div className="flex items-start justify-between mb-6" style={{ paddingLeft: '0.75rem' }}>
                                     <div className="p-4 bg-gray-900 text-white rounded-xl shadow-md">
                                         {h.icon}
                                     </div>
                                 </div>
-                                <h3 className="font-bold text-gray-900 mb-4 text-xl">{h.title}</h3>
+                                <h3 className="font-bold text-gray-900 mb-4 text-xl" style={{ paddingLeft: '0.75rem' }}>{h.title}</h3>
                                 <div className="flex items-start gap-4 text-gray-400 text-base font-medium mt-auto">
                                     <div className="h-px w-8 bg-gray-200 group-hover:bg-gray-400 transition-colors mt-3 shrink-0" />
                                     <span className="group-hover:text-gray-600 transition-colors leading-relaxed">{h.desc}</span>
@@ -486,9 +486,9 @@ export const MultiAgentProjectDetail: React.FC<MultiAgentProjectDetailProps> = (
             <div className="w-full bg-white h-12 md:h-24"></div>
 
             {/* ====== FOOTER / ACTIONS ====== */}
-            <section className="py-24 bg-gray-900 text-white">
-                <div className="container mx-auto max-w-7xl px-6 text-center">
-                    <h2 className="text-3xl md:text-4xl font-semibold text-white mb-10" style={{ fontFamily: 'Space Grotesk, sans-serif' }}>
+            <section className="bg-gray-900 text-white" style={{ paddingTop: '3rem', paddingBottom: '3rem' }}>
+                <div className="container mx-auto max-w-7xl px-10 md:px-16 text-center">
+                    <h2 className="text-3xl md:text-4xl font-semibold text-white" style={{ fontFamily: 'Space Grotesk, sans-serif', marginBottom: '2rem' }}>
                         Explore the Project
                     </h2>
                     <div className="flex flex-col sm:flex-row justify-center items-center gap-6">

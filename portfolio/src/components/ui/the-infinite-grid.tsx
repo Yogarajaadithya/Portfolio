@@ -120,12 +120,13 @@ export const InfiniteGridHero = ({ firstName, lastName, tagline, profileImage, r
 
                         {/* Tagline */}
                         <motion.p
-                            className="text-foreground mt-12 md:mt-16 max-w-[420px] text-lg md:text-xl"
+                            className="mt-12 md:mt-16 max-w-[420px] text-sm md:text-base"
                             style={{
                                 fontFamily: 'Inter, sans-serif',
-                                lineHeight: 1.5,
+                                lineHeight: 1.6,
                                 letterSpacing: '0.01em',
                                 textAlign: 'justify',
+                                color: '#444444',
                             }}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}

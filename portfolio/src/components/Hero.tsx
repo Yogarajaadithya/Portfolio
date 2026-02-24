@@ -9,35 +9,20 @@ interface HeroProps {
 
 export default function Hero({ firstName, lastName, tagline, profileImage }: HeroProps) {
     return (
-        <main
-            style={{
-                minHeight: '100vh',
-                display: 'flex',
-                alignItems: 'center',
-                paddingLeft: '80px',
-                paddingRight: '80px',
-            }}
-        >
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    width: '100%',
-                }}
-            >
+        <main className="min-h-screen flex items-center px-4 sm:px-8 md:px-16 lg:px-20">
+            <div className="flex flex-col-reverse md:flex-row justify-between items-center w-full gap-8 md:gap-0 py-8 md:py-0">
                 {/* Left: Name + Tagline */}
-                <div>
+                <div className="text-center md:text-left">
                     <h1
                         style={{
                             fontFamily: 'Space Grotesk, sans-serif',
                             fontStyle: 'italic',
-                            fontSize: 'clamp(5rem, 14vw, 11rem)',
+                            fontSize: 'clamp(3rem, 12vw, 11rem)',
                             fontWeight: 700,
                             lineHeight: 0.85,
                             color: '#000',
                             letterSpacing: '-0.03em',
-                            marginBottom: '80px', // Large gap between name and tagline
+                            marginBottom: 'clamp(1.5rem, 4vw, 5rem)',
                         }}
                     >
                         <motion.span
@@ -62,10 +47,10 @@ export default function Hero({ firstName, lastName, tagline, profileImage }: Her
                     <motion.p
                         style={{
                             fontFamily: 'Inter, sans-serif',
-                            fontSize: '1.375rem', // Larger
+                            fontSize: 'clamp(1rem, 2.5vw, 1.375rem)',
                             fontWeight: 400,
                             color: '#000',
-                            maxWidth: '420px',
+                            maxWidth: 'min(420px, 100%)',
                             lineHeight: 1.45,
                             letterSpacing: '0.02em',
                         }}
@@ -85,8 +70,8 @@ export default function Hero({ firstName, lastName, tagline, profileImage }: Her
                 >
                     <div
                         style={{
-                            width: 'clamp(220px, 22vw, 320px)',
-                            height: 'clamp(220px, 22vw, 320px)',
+                            width: 'clamp(140px, 35vw, 320px)',
+                            height: 'clamp(140px, 35vw, 320px)',
                             borderRadius: '50%',
                             overflow: 'hidden',
                             boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',

@@ -48,7 +48,7 @@ export default function Navigation({ isOpen, onClose }: NavigationProps) {
                     transition={{ duration: 0.3 }}
                 >
                     <motion.button
-                        className="absolute top-6 right-8 md:right-16 text-4xl text-zinc-900 hover:rotate-90 transition-transform duration-300"
+                        className="absolute top-4 right-4 sm:top-6 sm:right-8 md:right-16 text-3xl md:text-4xl text-zinc-900 hover:rotate-90 transition-transform duration-300 p-2"
                         aria-label="Close menu"
                         onClick={onClose}
                         initial={{ opacity: 0, rotate: -90 }}
@@ -68,7 +68,7 @@ export default function Navigation({ isOpen, onClose }: NavigationProps) {
                                 <a
                                     href={link.href}
                                     onClick={onClose}
-                                    className="text-4xl md:text-6xl font-bold text-zinc-900 hover:opacity-70 transition-opacity relative group"
+                                    className="text-3xl sm:text-4xl md:text-6xl font-bold text-zinc-900 hover:opacity-70 transition-opacity relative group"
                                     style={{ fontFamily: 'Space Grotesk, sans-serif' }}
                                 >
                                     {link.label}

@@ -8,18 +8,7 @@ interface HeaderProps {
 export default function Header({ initials, onMenuClick }: HeaderProps) {
     return (
         <header
-            style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                right: 0,
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                padding: '28px 50px',
-                zIndex: 50,
-                background: 'transparent',
-            }}
+            className="fixed top-0 left-0 right-0 flex justify-between items-center px-4 sm:px-8 md:px-12 py-5 md:py-7 z-50 bg-transparent"
         >
             <motion.a
                 href="#"

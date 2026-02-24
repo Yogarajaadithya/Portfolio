@@ -57,13 +57,13 @@ function TimelineCard({
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay }}
         >
-            <div className="rounded-xl border border-zinc-100 bg-white p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
-                <div className="flex flex-wrap items-start justify-between gap-2 mb-1">
+            <div className="rounded-xl border border-zinc-100 bg-white p-6 shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div className="flex flex-wrap items-start justify-between gap-2 mb-1" style={{ paddingLeft: '0.75rem' }}>
                     <div>
-                        <h4 className="text-2xl font-semibold text-zinc-900 leading-tight">{title}</h4>
-                        <p className="text-xl font-medium text-zinc-500 mt-0.5">{subtitle}</p>
+                        <h4 className="text-lg md:text-2xl font-semibold text-zinc-900 leading-tight">{title}</h4>
+                        <p className="text-base md:text-xl font-medium text-zinc-500 mt-0.5">{subtitle}</p>
                     </div>
-                    <div className="flex flex-col items-end gap-0.5 shrink-0">
+                    <div className="flex flex-col items-end gap-0.5 shrink-0" style={{ paddingRight: '0.75rem' }}>
                         <span className="flex items-center gap-1 text-sm text-zinc-900 font-medium">
                             <Calendar className="h-4 w-4" /> {period}
                         </span>
@@ -74,10 +74,10 @@ function TimelineCard({
                 </div>
 
                 {bullets && (
-                    <ul className="mt-2 space-y-1.5">
+                    <ul className="mt-2 space-y-1.5" style={{ paddingLeft: '0.75rem' }}>
                         {bullets.map((b, i) => (
-                            <li key={i} className="flex items-start gap-2 text-xl text-zinc-600">
-                                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400" />
+                            <li key={i} className="flex items-start gap-2 text-sm md:text-xl text-zinc-600">
+                                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400" style={{ marginTop: '0.6rem' }} />
                                 {b}
                             </li>
                         ))}
@@ -98,7 +98,7 @@ export default function About() {
 
     return (
         <>
-            <section id="about" className="py-64 bg-zinc-50">
+            <section id="about" className="py-16 sm:py-24 md:py-40 lg:py-64 bg-zinc-50">
                 <div className="container mx-auto px-4 w-full">
 
                     <div className="flex flex-col md:flex-row items-center justify-between gap-12">
@@ -127,33 +127,33 @@ export default function About() {
                         {/* ── RIGHT: Experience → WavePath → Education ─────────── */}
                         <div className="w-full md:w-2/3 flex flex-col gap-6">
 
-                            {/* Experience heading */}
-                            <motion.div
-                                className="flex items-center gap-3"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5 }}
-                            >
-                                <Briefcase className="h-5 w-5 text-zinc-900" />
-                                <h3 className="text-base font-bold uppercase tracking-widest text-zinc-900">
-                                    Work Experience
-                                </h3>
-                            </motion.div>
-
-                            {/* Experience cards */}
-                            <div className="flex flex-col gap-5 border-l-2 border-zinc-100 ml-3 -mt-3">
-                                {EXPERIENCE.map((exp, i) => (
-                                    <TimelineCard
-                                        key={i}
-                                        title={exp.role}
-                                        subtitle={exp.company}
-                                        period={exp.period}
-                                        location={exp.location}
-                                        bullets={exp.highlights}
-                                        delay={0.1 * i}
-                                    />
-                                ))}
+                            {/* Experience group */}
+                            <div className="flex flex-col gap-3" style={{ marginTop: '3rem' }}>
+                                <motion.div
+                                    className="flex items-center gap-3"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5 }}
+                                >
+                                    <Briefcase className="h-5 w-5 text-zinc-900" />
+                                    <h3 className="text-base font-bold uppercase tracking-widest text-zinc-900">
+                                        Work Experience
+                                    </h3>
+                                </motion.div>
+                                <div className="flex flex-col gap-5 border-l-2 border-zinc-100 ml-3">
+                                    {EXPERIENCE.map((exp, i) => (
+                                        <TimelineCard
+                                            key={i}
+                                            title={exp.role}
+                                            subtitle={exp.company}
+                                            period={exp.period}
+                                            location={exp.location}
+                                            bullets={exp.highlights}
+                                            delay={0.1 * i}
+                                        />
+                                    ))}
+                                </div>
                             </div>
 
                             {/* ── WavePath divider ── */}
@@ -161,32 +161,32 @@ export default function About() {
                                 <WavePath className="w-full" />
                             </div>
 
-                            {/* Education heading */}
-                            <motion.div
-                                className="flex items-center gap-3"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: 0.2 }}
-                            >
-                                <GraduationCap className="h-5 w-5 text-zinc-900" />
-                                <h3 className="text-base font-bold uppercase tracking-widest text-zinc-900">
-                                    Education
-                                </h3>
-                            </motion.div>
-
-                            {/* Education cards */}
-                            <div className="flex flex-col gap-5 border-l-2 border-zinc-100 ml-3 -mt-3">
-                                {EDUCATION.map((edu, i) => (
-                                    <TimelineCard
-                                        key={i}
-                                        title={edu.degree}
-                                        subtitle={edu.institution}
-                                        period={edu.period}
-                                        location={edu.location}
-                                        delay={0.1 * i + 0.3}
-                                    />
-                                ))}
+                            {/* Education group */}
+                            <div className="flex flex-col gap-3" style={{ marginBottom: '3rem' }}>
+                                <motion.div
+                                    className="flex items-center gap-3"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: 0.2 }}
+                                >
+                                    <GraduationCap className="h-5 w-5 text-zinc-900" />
+                                    <h3 className="text-base font-bold uppercase tracking-widest text-zinc-900">
+                                        Education
+                                    </h3>
+                                </motion.div>
+                                <div className="flex flex-col gap-5 border-l-2 border-zinc-100 ml-3">
+                                    {EDUCATION.map((edu, i) => (
+                                        <TimelineCard
+                                            key={i}
+                                            title={edu.degree}
+                                            subtitle={edu.institution}
+                                            period={edu.period}
+                                            location={edu.location}
+                                            delay={0.1 * i + 0.3}
+                                        />
+                                    ))}
+                                </div>
                             </div>
 
                         </div>

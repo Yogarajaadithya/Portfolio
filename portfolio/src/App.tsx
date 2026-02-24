@@ -18,7 +18,7 @@ function App() {
     initials: "YA",
     firstName: "YOGARAJA",
     lastName: "ADITHYA",
-    tagline: "Product & UI/UX Designer crafting intuitive, engaging, and purposeful digital experiences. Based in Berlin, working globally.",
+    tagline: "AI Engineer specializing in LLMs, multi-agent systems, and data-driven automation. Currently in Berlin, designing AI solutions that deliver accuracy, reliability, and real-world impact.",
     profileImage: "/profile.jpg",
   };
 

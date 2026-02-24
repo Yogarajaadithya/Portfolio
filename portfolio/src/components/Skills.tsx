@@ -1,53 +1,90 @@
-import { motion } from 'framer-motion';
+import RadialOrbitalTimeline from '@/components/ui/radial-orbital-timeline';
+import { Terminal, Database, Code, Lightbulb, Box, Wrench, Settings } from 'lucide-react';
 
-// Template skills - Replace with your skills
-const SKILLS = [
-    { category: 'Frontend', items: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js'] },
-    { category: 'Backend', items: ['Node.js', 'Python', 'PostgreSQL', 'MongoDB'] },
-    { category: 'Tools', items: ['Git', 'Docker', 'AWS', 'Figma'] },
-    { category: 'Other', items: ['Agile', 'CI/CD', 'Testing', 'API Design'] },
+const timelineData = [
+    {
+        id: 1,
+        title: "Programming",
+        date: "Core",
+        content: "Python, JavaScript, TypeScript, SQL",
+        category: "Languages",
+        icon: Terminal,
+        relatedIds: [2, 3, 5],
+        status: "completed" as const,
+        energy: 95,
+    },
+    {
+        id: 2,
+        title: "RAG & Graph Tech",
+        date: "Advanced",
+        content: "FAISS, ChromaDB, PGVector, GraphDB, Vector Embeddings, Similarity Search",
+        category: "AI Data",
+        icon: Database,
+        relatedIds: [1, 3, 4],
+        status: "completed" as const,
+        energy: 90,
+    },
+    {
+        id: 3,
+        title: "Libraries & Frameworks",
+        date: "Ecosystem",
+        content: "LangGraph, LangChain, FastAPI, Streamlit, React.js, CrewAI",
+        category: "Frameworks",
+        icon: Code,
+        relatedIds: [1, 2, 4],
+        status: "completed" as const,
+        energy: 85,
+    },
+    {
+        id: 4,
+        title: "Concepts",
+        date: "Architecture",
+        content: "RAG Systems, Multi-agent Architectures, A2A Communication, MCP, Prompt Engineering, Workflow Orchestration (DAGs), ETL Pipelines, Machine Learning",
+        category: "Theory",
+        icon: Lightbulb,
+        relatedIds: [2, 3],
+        status: "completed" as const,
+        energy: 90,
+    },
+    {
+        id: 5,
+        title: "Database Management",
+        date: "Storage",
+        content: "PostgreSql, SQL, SQLite",
+        category: "Databases",
+        icon: Box,
+        relatedIds: [1, 2],
+        status: "completed" as const,
+        energy: 85,
+    },
+    {
+        id: 6,
+        title: "Developer Tools",
+        date: "Productivity",
+        content: "Claude, OpenAI Codex, GitHub Copilot, HuggingFace",
+        category: "Tools",
+        icon: Wrench,
+        relatedIds: [1, 3, 7],
+        status: "completed" as const,
+        energy: 95,
+    },
+    {
+        id: 7,
+        title: "Tools & DevOps",
+        date: "Infrastructure",
+        content: "Git, GitHub, Docker, Kubernetes, CI/CD Pipelines, LangSmith, Postman, VS Code, DBeaver, Airflow, Databricks",
+        category: "DevOps",
+        icon: Settings,
+        relatedIds: [6, 1],
+        status: "completed" as const,
+        energy: 80,
+    }
 ];
 
 export default function Skills() {
     return (
-        <section id="skills" className="py-24 px-16 lg:px-24 bg-white">
-            <div className="max-w-[1400px] mx-auto">
-                <motion.h2
-                    className="text-4xl md:text-6xl font-bold text-zinc-900 mb-16"
-                    style={{ fontFamily: 'Space Grotesk, sans-serif' }}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                >
-                    Skills
-                </motion.h2>
-
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {SKILLS.map((skillGroup, groupIndex) => (
-                        <motion.div
-                            key={skillGroup.category}
-                            className="p-6 bg-zinc-50 rounded-2xl"
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: groupIndex * 0.1 }}
-                        >
-                            <h3 className="text-xl font-semibold text-zinc-900 mb-4">
-                                {skillGroup.category}
-                            </h3>
-                            <ul className="space-y-2">
-                                {skillGroup.items.map((skill, index) => (
-                                    <li key={index} className="text-zinc-600 flex items-center gap-2">
-                                        <span className="w-1.5 h-1.5 bg-zinc-400 rounded-full"></span>
-                                        {skill}
-                                    </li>
-                                ))}
-                            </ul>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
+        <section id="skills" className="w-full bg-white relative">
+            <RadialOrbitalTimeline timelineData={timelineData} />
         </section>
     );
 }
