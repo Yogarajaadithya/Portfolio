@@ -124,16 +124,10 @@ const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailProps> = 
                         </div>
 
                         <div className="pt-6 flex flex-col sm:flex-row gap-4">
-                            <a href="https://github.com/Yogarajaadithya/The-Multi-Agent-Assistant-for-Smarter-Analytics.git" target="_blank" rel="noopener noreferrer" className="inline-block">
+                            <a href="https://github.com/Yogarajaadithya/Autonomous-Blog-Generation-Agent.git" target="_blank" rel="noopener noreferrer" className="inline-block">
                                 <GetStartedButton
                                     text="View Repository"
                                     className="bg-gray-900 text-white hover:bg-black h-14 px-10 text-lg rounded-full shadow-sm hover:shadow-md transition-all duration-200"
-                                />
-                            </a>
-                            <a href="#" target="_blank" rel="noopener noreferrer" className="inline-block">
-                                <GetStartedButton
-                                    text="Watch Pitch Video"
-                                    className="bg-white text-gray-900 border-2 border-gray-200 hover:border-gray-900 hover:bg-gray-50 h-14 px-10 text-lg rounded-full shadow-sm hover:shadow-md transition-all duration-200"
                                 />
                             </a>
                         </div>
@@ -459,16 +453,10 @@ const AutonomousBlogProjectDetail: React.FC<AutonomousBlogProjectDetailProps> = 
                         Explore the Project
                     </h2>
                     <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
-                        <a href="https://github.com/Yogarajaadithya/The-Multi-Agent-Assistant-for-Smarter-Analytics.git" target="_blank" rel="noopener noreferrer">
+                        <a href="https://github.com/Yogarajaadithya/Autonomous-Blog-Generation-Agent.git" target="_blank" rel="noopener noreferrer">
                             <GetStartedButton
                                 text="View on GitHub"
                                 className="bg-white text-gray-900 hover:bg-gray-100 h-14 px-10 text-lg rounded-full shadow-sm hover:shadow-md transition-all duration-200"
-                            />
-                        </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer">
-                            <GetStartedButton
-                                text="Watch Pitch Video"
-                                className="bg-transparent text-white border-2 border-white/20 hover:border-white hover:bg-white/5 h-14 px-10 text-lg rounded-full transition-all duration-200"
                             />
                         </a>
                     </div>

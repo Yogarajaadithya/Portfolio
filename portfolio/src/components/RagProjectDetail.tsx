@@ -137,12 +137,6 @@ export const RagProjectDetail: React.FC<RagProjectDetailProps> = ({ onClose }) =
                                     className="bg-gray-900 text-white hover:bg-black h-14 px-10 text-lg rounded-full shadow-sm hover:shadow-md transition-all duration-200"
                                 />
                             </a>
-                            <a href="#" target="_blank" rel="noopener noreferrer" className="inline-block">
-                                <GetStartedButton
-                                    text="Watch Pitch Video"
-                                    className="bg-white text-gray-900 border-2 border-gray-200 hover:border-gray-900 hover:bg-gray-50 h-14 px-10 text-lg rounded-full shadow-sm hover:shadow-md transition-all duration-200"
-                                />
-                            </a>
                         </div>
                     </motion.div>
                 </div>
@@ -581,12 +575,6 @@ export const RagProjectDetail: React.FC<RagProjectDetailProps> = ({ onClose }) =
                             <GetStartedButton
                                 text="View on GitHub"
                                 className="bg-white text-gray-900 hover:bg-gray-100 h-14 px-10 text-lg rounded-full shadow-sm hover:shadow-md transition-all duration-200"
-                            />
-                        </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer">
-                            <GetStartedButton
-                                text="Watch Pitch Video"
-                                className="bg-transparent text-white border-2 border-white/20 hover:border-white hover:bg-white/5 h-14 px-10 text-lg rounded-full transition-all duration-200"
                             />
                         </a>
                     </div>

@@ -25,12 +25,12 @@ export default function ContactCTA() {
                 />
 
                 <div className="flex flex-col sm:flex-row items-center gap-4 mt-8">
-                    <NeonButton href="#contact" size="lg">
+                    <NeonButton href="mailto:adithyaainn@gmail.com" size="lg">
                         <Mail className="w-5 h-5 shrink-0" />
                         Get in Touch
                     </NeonButton>
                     <NeonButton
-                        href="https://linkedin.com/in/yourprofile"
+                        href="https://www.linkedin.com/in/yogaraja-adithya-somasundar-82518826b"
                         target="_blank"
                         rel="noopener noreferrer"
                         size="lg"

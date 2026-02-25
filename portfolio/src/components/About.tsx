@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { WavePath } from '@/components/ui/wave-path';
-import { GraduationCap, Briefcase, MapPin, Calendar, ArrowRight } from 'lucide-react';
-import { RainbowButton } from '@/components/ui/rainbow-button';
+import { GraduationCap, Briefcase, MapPin, Calendar } from 'lucide-react';
+import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button';
 import { AboutDetail } from '@/components/AboutDetail';
 
 // ── Work Experience Data ──────────────────────────────────────────────────────
@@ -117,11 +117,11 @@ export default function About() {
                             >
                                 About Me
                             </h2>
-                            <RainbowButton onClick={() => setShowDetail(true)} className="h-14 px-10 text-lg rounded-2xl">
-                                <span className="flex items-center gap-2">
-                                    More <ArrowRight className="h-5 w-5" />
-                                </span>
-                            </RainbowButton>
+                            <InteractiveHoverButton
+                                onClick={() => setShowDetail(true)}
+                                text="More"
+                                className="h-14 w-40 text-lg rounded-2xl"
+                            />
                         </motion.div>
 
                         {/* ── RIGHT: Experience → WavePath → Education ─────────── */}

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { FluidNavigation } from './components/FluidNavigation';
 import { InfiniteGridHero } from './components/ui/the-infinite-grid';
 import Projects from './components/Projects';
@@ -7,11 +6,9 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import ResumeCTA from './components/ResumeCTA';
 import ContactCTA from './components/ContactCTA';
-import Navigation from './components/Navigation';
 import './App.css';
 
 function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Your information - Update these values
   const portfolioData = {
@@ -41,10 +38,6 @@ function App() {
       <ResumeCTA />
       <ContactCTA />
       <Contact />
-      <Navigation
-        isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
-      />
     </>
   );
 }

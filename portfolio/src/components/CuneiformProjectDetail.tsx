@@ -120,12 +120,6 @@ export const CuneiformProjectDetail: React.FC<CuneiformProjectDetailProps> = ({ 
                                     className="bg-gray-900 text-white hover:bg-black h-14 px-10 text-lg rounded-full shadow-sm hover:shadow-md transition-all duration-200"
                                 />
                             </a>
-                            <a href="#" target="_blank" rel="noopener noreferrer" className="inline-block">
-                                <GetStartedButton
-                                    text="Watch Pitch Video"
-                                    className="bg-white text-gray-900 border-2 border-gray-200 hover:border-gray-900 hover:bg-gray-50 h-14 px-10 text-lg rounded-full shadow-sm hover:shadow-md transition-all duration-200"
-                                />
-                            </a>
                         </div>
                     </motion.div>
                 </div>
@@ -191,7 +185,7 @@ export const CuneiformProjectDetail: React.FC<CuneiformProjectDetailProps> = ({ 
                             </div>
                             <div className="flex justify-center overflow-hidden pt-8 md:pt-4">
                                 <pre className="font-mono text-xs md:text-sm leading-none text-gray-800 whitespace-pre">
-{`┌──────────────────────────────────────────────────────────────┐
+                                    {`┌──────────────────────────────────────────────────────────────┐
 │                     CDLI Image Database                      │
 │                     (71 Ancient Tablets)                     │
 └──────────────────────────────────────────────────────────────┘
@@ -431,12 +425,6 @@ export const CuneiformProjectDetail: React.FC<CuneiformProjectDetailProps> = ({ 
                             <GetStartedButton
                                 text="View on GitHub"
                                 className="bg-white text-gray-900 hover:bg-gray-100 h-14 px-10 text-lg rounded-full shadow-sm hover:shadow-md transition-all duration-200"
-                            />
-                        </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer">
-                            <GetStartedButton
-                                text="Watch Pitch Video"
-                                className="bg-transparent text-white border-2 border-white/20 hover:border-white hover:bg-white/5 h-14 px-10 text-lg rounded-full transition-all duration-200"
                             />
                         </a>
                     </div>

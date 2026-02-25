@@ -7,7 +7,7 @@ export default function ResumeCTA() {
                 heading="Resume"
                 tagline="All the context you need, without the animations."
                 buttonText="Open Resume ↗"
-                buttonHref="#"
+                buttonHref="https://drive.google.com/file/d/1v-H4YsAIXieIEa88tGjeO4kHj2wUJok0/view?usp=drive_link"
                 imageUrl="/chatgpt-image.png"
                 navItems={[]}
             />

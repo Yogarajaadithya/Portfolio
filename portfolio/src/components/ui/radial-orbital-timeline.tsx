@@ -21,12 +21,12 @@ interface RadialOrbitalTimelineProps {
 const ROTATION_SPEED = 0.006; // degrees per ms ≈ 6°/s
 
 const NODE_COLORS = [
-    { pill: "bg-blue-100 text-blue-700 border-blue-200",    header: "border-blue-200" },
+    { pill: "bg-blue-100 text-blue-700 border-blue-200", header: "border-blue-200" },
     { pill: "bg-purple-100 text-purple-700 border-purple-200", header: "border-purple-200" },
     { pill: "bg-emerald-100 text-emerald-700 border-emerald-200", header: "border-emerald-200" },
-    { pill: "bg-amber-100 text-amber-700 border-amber-200",  header: "border-amber-200" },
-    { pill: "bg-cyan-100 text-cyan-700 border-cyan-200",    header: "border-cyan-200" },
-    { pill: "bg-rose-100 text-rose-700 border-rose-200",    header: "border-rose-200" },
+    { pill: "bg-amber-100 text-amber-700 border-amber-200", header: "border-amber-200" },
+    { pill: "bg-cyan-100 text-cyan-700 border-cyan-200", header: "border-cyan-200" },
+    { pill: "bg-rose-100 text-rose-700 border-rose-200", header: "border-rose-200" },
     { pill: "bg-indigo-100 text-indigo-700 border-indigo-200", header: "border-indigo-200" },
 ];
 
@@ -47,12 +47,12 @@ export default function RadialOrbitalTimeline({
     const rafRef = useRef<number | null>(null);
     const lastTimestampRef = useRef<number | null>(null);
     const expandedItemsRef = useRef(expandedItems);
-    const radiusRef = useRef(220);
-    const [displayRadius, setDisplayRadius] = useState(220);
+    const radiusRef = useRef(280);
+    const [displayRadius, setDisplayRadius] = useState(280);
 
     useEffect(() => {
         const updateRadius = () => {
-            const r = window.innerWidth < 640 ? 110 : window.innerWidth < 768 ? 150 : 220;
+            const r = window.innerWidth < 640 ? 140 : window.innerWidth < 768 ? 190 : 280;
             radiusRef.current = r;
             setDisplayRadius(r);
         };
@@ -192,120 +192,121 @@ export default function RadialOrbitalTimeline({
 
                 {/* RIGHT: Orbital */}
                 <div className="relative w-full md:w-2/3 h-[320px] sm:h-[420px] md:h-[700px] flex items-center justify-center">
-                <div
-                    className="absolute w-full h-full flex items-center justify-center"
-                    ref={orbitRef}
-                    style={{ perspective: "1000px" }}
-                >
-                    <div className="absolute w-20 h-20 rounded-full bg-gradient-to-br from-purple-500 via-blue-500 to-teal-500 animate-pulse flex items-center justify-center z-10">
-                        <div className="absolute w-24 h-24 rounded-full border border-black animate-ping opacity-40"></div>
-                        <div
-                            className="absolute w-32 h-32 rounded-full border border-black animate-ping opacity-20"
-                            style={{ animationDelay: "0.5s" }}
-                        ></div>
-                        <div className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-md"></div>
-                    </div>
-
                     <div
-                        className="absolute rounded-full border border-black opacity-30"
-                        style={{ width: displayRadius * 2, height: displayRadius * 2 }}
-                    ></div>
-
-                    {timelineData.map((item, index) => {
-                        const position = calculateNodePosition(index, timelineData.length);
-                        const isExpanded = expandedItems[item.id];
-                        const isRelated = isRelatedToActive(item.id);
-                        const isPulsing = pulseEffect[item.id];
-                        const Icon = item.icon;
-
-                        const nodeStyle = {
-                            transform: `translate(${position.x}px, ${position.y}px)`,
-                            zIndex: isExpanded ? 200 : position.zIndex,
-                            opacity: isExpanded ? 1 : position.opacity,
-                        };
-
-                        return (
+                        className="absolute w-full h-full flex items-center justify-center"
+                        ref={orbitRef}
+                        style={{ perspective: "1000px" }}
+                    >
+                        <div className="absolute w-28 h-28 rounded-full bg-gradient-to-br from-purple-500 via-blue-500 to-teal-500 animate-pulse flex items-center justify-center z-10">
+                            <div className="absolute w-32 h-32 rounded-full border border-black animate-ping opacity-40"></div>
                             <div
-                                key={item.id}
-                                ref={(el) => { nodeRefs.current[item.id] = el; }}
-                                className="absolute cursor-pointer"
-                                style={nodeStyle}
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    toggleItem(item.id);
-                                }}
-                            >
-                                <div
-                                    className={`absolute rounded-full -inset-1 ${isPulsing ? "animate-pulse duration-1000" : ""
-                                        }`}
-                                    style={{
-                                        background: `radial-gradient(circle, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 70%)`,
-                                        width: `${item.energy * 0.5 + 40}px`,
-                                        height: `${item.energy * 0.5 + 40}px`,
-                                        left: `-${(item.energy * 0.5 + 40 - 40) / 2}px`,
-                                        top: `-${(item.energy * 0.5 + 40 - 40) / 2}px`,
-                                    }}
-                                ></div>
+                                className="absolute w-40 h-40 rounded-full border border-black animate-ping opacity-20"
+                                style={{ animationDelay: "0.5s" }}
+                            ></div>
+                            <div className="w-14 h-14 rounded-full bg-white/80 backdrop-blur-md"></div>
+                        </div>
 
+                        <div
+                            className="absolute rounded-full border border-black opacity-30"
+                            style={{ width: displayRadius * 2, height: displayRadius * 2 }}
+                        ></div>
+
+                        {timelineData.map((item, index) => {
+                            const position = calculateNodePosition(index, timelineData.length);
+                            const isExpanded = expandedItems[item.id];
+                            const isRelated = isRelatedToActive(item.id);
+                            const isPulsing = pulseEffect[item.id];
+                            const Icon = item.icon;
+
+                            const nodeStyle = {
+                                transform: `translate(${position.x}px, ${position.y}px)`,
+                                zIndex: isExpanded ? 200 : position.zIndex,
+                                opacity: isExpanded ? 1 : position.opacity,
+                            };
+
+                            return (
                                 <div
-                                    className={`
+                                    key={item.id}
+                                    ref={(el) => { nodeRefs.current[item.id] = el; }}
+                                    className="absolute cursor-pointer"
+                                    style={nodeStyle}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        toggleItem(item.id);
+                                    }}
+                                >
+                                    <div
+                                        className={`absolute rounded-full -inset-1 ${isPulsing ? "animate-pulse duration-1000" : ""
+                                            }`}
+                                        style={{
+                                            background: `radial-gradient(circle, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 70%)`,
+                                            width: `${item.energy * 0.5 + 40}px`,
+                                            height: `${item.energy * 0.5 + 40}px`,
+                                            left: `-${(item.energy * 0.5 + 40 - 40) / 2}px`,
+                                            top: `-${(item.energy * 0.5 + 40 - 40) / 2}px`,
+                                        }}
+                                    ></div>
+
+                                    <div
+                                        className={`
                   w-14 h-14 rounded-full flex items-center justify-center
                   ${isExpanded
-                                            ? "bg-white text-black"
-                                            : isRelated
-                                                ? "bg-zinc-800 text-white"
-                                                : "bg-black text-white"
-                                        }
+                                                ? "bg-white text-black"
+                                                : isRelated
+                                                    ? "bg-zinc-800 text-white"
+                                                    : "bg-black text-white"
+                                            }
                   border-2
                   ${isExpanded
-                                            ? "border-black shadow-lg shadow-black/20"
-                                            : isRelated
-                                                ? "border-black animate-pulse"
-                                                : "border-black"
-                                        }
+                                                ? "border-black shadow-lg shadow-black/20"
+                                                : isRelated
+                                                    ? "border-black animate-pulse"
+                                                    : "border-black"
+                                            }
                   transition-colors duration-300
                   ${isExpanded ? "scale-150" : ""}
                 `}
-                                >
-                                    <Icon size={22} />
-                                </div>
-
-                                {!isExpanded && (
-                                    <div className="absolute top-16 left-1/2 -translate-x-1/2 whitespace-nowrap text-sm font-semibold tracking-wider text-black">
-                                        {item.title}
+                                    >
+                                        <Icon size={22} />
                                     </div>
-                                )}
 
-                                {isExpanded && (() => {
-                                    const color = NODE_COLORS[index % NODE_COLORS.length];
-                                    return (
-                                    <Card className={`absolute top-12 left-1/2 -translate-x-1/2 w-72 bg-white shadow-xl shadow-black/5 overflow-visible border ${color.header}`}>
-                                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-px h-3 bg-black"></div>
-                                        <CardHeader className="pb-3">
-                                            <CardTitle className="text-base text-zinc-900">
-                                                {item.title}
-                                            </CardTitle>
-                                        </CardHeader>
-                                        <CardContent className="pt-0" style={{ paddingLeft: '1.25rem', paddingRight: '1.25rem', paddingBottom: '1rem' }}>
-                                            <div className="flex flex-wrap gap-1.5">
-                                                {item.content.split(",").map((skill) => (
-                                                    <span
-                                                        key={skill.trim()}
-                                                        className={`px-2.5 py-1 text-sm rounded-full border ${color.pill}`}
-                                                    >
-                                                        {skill.trim()}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                    );
-                                })()}
-                            </div>
-                        );
-                    })}
+                                    {!isExpanded && (
+                                        <div className="absolute top-16 left-1/2 -translate-x-1/2 whitespace-nowrap text-sm font-semibold tracking-wider text-black">
+                                            {item.title}
+                                        </div>
+                                    )}
+
+                                    {isExpanded && (() => {
+                                        const color = NODE_COLORS[index % NODE_COLORS.length];
+                                        return (
+                                            <Card className={`absolute top-12 left-1/2 -translate-x-1/2 w-72 bg-white shadow-xl shadow-black/5 overflow-visible border ${color.header}`}>
+                                                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-px h-3 bg-black"></div>
+                                                <CardHeader className="pb-3">
+                                                    <CardTitle className="text-base text-zinc-900">
+                                                        {item.title}
+                                                    </CardTitle>
+                                                </CardHeader>
+                                                <CardContent className="pt-0" style={{ paddingLeft: '1.25rem', paddingRight: '1.25rem', paddingBottom: '1rem' }}>
+                                                    <div className="flex flex-wrap gap-1.5">
+                                                        {item.content.split(",").map((skill) => (
+                                                            <span
+                                                                key={skill.trim()}
+                                                                className={`text-sm rounded-full border ${color.pill}`}
+                                                                style={{ padding: '1px 20px' }}
+                                                            >
+                                                                {skill.trim()}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                </CardContent>
+                                            </Card>
+                                        );
+                                    })()}
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     );
