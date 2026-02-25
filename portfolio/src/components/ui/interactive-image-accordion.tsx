@@ -49,7 +49,7 @@ const accordionItems: AccordionItemData[] = [
     {
         id: 4,
         title: 'Cuneiform Sign Detection & Classification',
-        imageUrl: '/cuniform.jpg',
+        imageUrl: `${import.meta.env.BASE_URL}cuniform.jpg`,
         description: 'A deep learning pipeline using Faster R-CNN for detecting and classifying ancient cuneiform signs in tablet images, enabling automated archaeological analysis and digitization of historical artifacts.',
         techStack: ['Python', 'PyTorch', 'Faster R-CNN', 'Torchvision', 'OpenCV', 'NumPy'],
         githubUrl: '#',

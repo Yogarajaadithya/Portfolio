@@ -16,7 +16,7 @@ function App() {
     firstName: "YOGARAJA",
     lastName: "ADITHYA",
     tagline: "AI Engineer specializing in LLMs, multi-agent systems, and data-driven automation. Currently in Berlin, designing AI solutions that deliver accuracy, reliability, and real-world impact.",
-    profileImage: "/profile.jpg",
+    profileImage: `${import.meta.env.BASE_URL}profile.jpg`,
   };
 
   return (
